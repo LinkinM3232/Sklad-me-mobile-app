@@ -22,10 +22,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-val SurfaceDark = Color(0xFF1A1113)
-val SurfaceContainer = Color(0xFF22191B)
-val PrimaryColor = Color(0xFFC27951)
-val OnSurfaceVariant = Color(0xFFCCB6BB)
+val ErrorColor = Color(0xFFCF6679)
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -34,6 +32,8 @@ fun AddExpenseScreen(onBackClick: () -> Unit) {
     var description by remember { mutableStateOf("") }
     var payer by remember { mutableStateOf("Вы") }
     var date by remember { mutableStateOf("Сегодня") }
+
+    val isFormValid = amount.isNotEmpty() && description.isNotEmpty()
 
     Scaffold(
         containerColor = SurfaceDark,
@@ -196,20 +196,34 @@ fun AddExpenseScreen(onBackClick: () -> Unit) {
                 }
             }
 
+            if (!isFormValid && (amount.isNotEmpty() || description.isNotEmpty())) {
+                Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    text = "Заполните сумму и название расхода",
+                    color = ErrorColor,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Medium
+                )
+            }
+
             Spacer(modifier = Modifier.weight(1f))
 
             Button(
                 onClick = onBackClick,
+                enabled = isFormValid,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(64.dp)
                     .padding(bottom = 8.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = PrimaryColor),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = PrimaryColor,
+                    disabledContainerColor = SurfaceContainer
+                ),
                 shape = RoundedCornerShape(16.dp)
             ) {
                 Text(
                     text = "Сохранить",
-                    color = Color.Black,
+                    color = if (isFormValid) Color.Black else OnSurfaceVariant.copy(alpha = 0.5f),
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
                 )

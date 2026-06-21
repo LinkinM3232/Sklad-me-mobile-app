@@ -17,11 +17,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-val SurfaceDark = Color(0xFF1A1113)
-val SurfaceContainer = Color(0xFF22191B)
-val PrimaryColor = Color(0xFFC27951)
-val OnSurfaceVariant = Color(0xFFCCB6BB)
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CreateTripScreen(onBackClick: () -> Unit) {

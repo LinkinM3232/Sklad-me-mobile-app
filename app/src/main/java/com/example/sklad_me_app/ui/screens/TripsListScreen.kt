@@ -22,12 +22,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.sklad_me_app.R
+val DividerColor = Color(0xFF352B2D)
 
-val SurfaceDark = Color(0xFF1A1113)
-val SurfaceContainer = Color(0xFF22191B)
-val PrimaryColor = Color(0xFFC27951)
-val OnSurfaceVariant = Color(0xFFCCB6BB)
-val DividerColor = Color(0xFF000000)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
